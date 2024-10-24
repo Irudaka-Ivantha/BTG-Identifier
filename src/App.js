@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import CameraSection from './components/CameraSection';
-import PredictionResult from './components/PredictionResult';
+import Navbar from './components/home/Navbar';
+import CameraSection from './components/camera/CameraSection';
+import PredictionResult from './components/result/PredictionResult';
 import './index.css';  // Make sure this points to your CSS file
 
 
