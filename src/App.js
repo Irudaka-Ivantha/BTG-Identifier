@@ -1,21 +1,27 @@
 import React from 'react';
-import Navbar from './components/home/Navbar';
-import CameraSection from './components/camera/CameraSection';
-import PredictionResult from './components/result/PredictionResult';
-import './index.css';  // Make sure this points to your CSS file
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Ensure react-router-dom is installed
 
+
+// Import your components after moving them inside the src folder
+import Camera from './components/camera/camera';
+import Result from './components/result/result';
+import About from './components/about/about';
+import Home from './components/home/home';
+import Grades from './components/grades/grades';
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <div className="container mt-5">
-        <div className="row">
-          <CameraSection />
-          <PredictionResult />
-        </div>
-      </div>
-    </div>
+    <BrowserRouter>
+      
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/camera" element={<Camera />} />
+          <Route path="/result" element={<Result />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/grades" element={<Grades />} />
+        </Routes>
+     
+    </BrowserRouter>
   );
 }
 
