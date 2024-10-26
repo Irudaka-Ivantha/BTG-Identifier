@@ -10,6 +10,7 @@ import About from '../../components/about/about';
 import Grades from '../../components/grades/grades';
 import Footer from '../../components/footer/footer';
 import NavBar from '../../components/home/navBar';
+import '../../App.css';
 
 const Home = () => {
   const location = useLocation();
@@ -44,7 +45,7 @@ const Home = () => {
   }, [location.pathname]);
 
   const settings = {
-    dots: false,  // Disable default dots to use custom controls
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -58,32 +59,54 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-black">
+    <div className="flex flex-col min-h-screen">
       <NavBar activeSection={activeSection} /> 
       <div id="main-banner" className="relative overflow-hidden" ref={homeRef}>
+        
         <Slider ref={sliderRef} {...settings}>
+          {/* Slide 1 */}
           <div>
-            <div className="w-full h-screen bg-center bg-cover" style={{ backgroundImage: `url(${home1})` }}>
-              <div className="absolute inset-0  bg-opacity-40 flex items-center justify-center">
-                <div className="text-center px-4 text-white"> {/* Add content for slide 1 here */} </div>
+            <div className="w-full h-screen bg-center bg-cover relative" style={{ backgroundImage: `url(${home1})` }}>
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <div className="text-center text-white">
+                  <h1 className="text-5xl font-bold mb-4">Welcome to Black Tea World</h1>
+                  <button className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-2 px-6 rounded-full">
+                    Learn More
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* Slide 2 */}
           <div>
-            <div className="w-full h-screen bg-center bg-cover" style={{ backgroundImage: `url(${home2})` }}>
-              <div className="absolute inset-0  bg-opacity-30 flex items-center justify-center">
-                <div className="text-center px-4 text-white"> {/* Add content for slide 2 here */} </div>
+            <div className="w-full h-screen bg-center bg-cover relative" style={{ backgroundImage: `url(${home2})` }}>
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <div className="text-center text-white">
+                  <h1 className="text-5xl font-bold mb-4">Explore Our Tea Varieties</h1>
+                  <button className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-2 px-6 rounded-full">
+                    Explore Now
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* Slide 3 */}
           <div>
-            <div className="w-full h-screen bg-center bg-cover" style={{ backgroundImage: `url(${home3})` }}>
-              <div className="absolute inset-0 bg-opacity-50 flex items-center justify-center">
-                <div className="text-center px-4 text-white"> {/* Add content for slide 3 here */} </div>
+            <div className="w-full h-screen bg-center bg-cover relative" style={{ backgroundImage: `url(${home3})` }}>
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <div className="text-center text-white">
+                  <h1 className="text-5xl font-bold mb-4">Experience the Flavor</h1>
+                  <button className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-2 px-6 rounded-full">
+                    Start Tasting
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </Slider>
+        
         {/* Custom Dots */}
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-4">
           {[0, 1, 2].map((index) => (
@@ -98,8 +121,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-      
-      {/* Add the About, Grades, and Footer components below the slider */}
+
       <About />
       <Grades />
       <Footer />
