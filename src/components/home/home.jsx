@@ -15,6 +15,7 @@ import '../../App.css';
 const Home = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
   const [activeSection, setActiveSection] = useState('home'); 
   const homeRef = useRef(null); 
@@ -56,9 +57,9 @@ const Home = () => {
   };
 
   const handleDotClick = (index) => {
-    sliderRef.current.slickGoTo(index);
+    setCurrentSlide(index);
+    sliderRef.current.slickGoTo(index); 
   };
-
   
   const handleNavigateToCamera = () => {
     navigate('/camera');
@@ -72,30 +73,41 @@ const Home = () => {
         <Slider ref={sliderRef} {...settings}>
           {/* Slide 1 */}
           <div>
-            <div className="w-full h-screen bg-center bg-cover relative" style={{ backgroundImage: `url(${home1})` }}>
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <h1 className="text-5xl font-bold mb-4">BLACK TEA GRADES</h1>
-                  <button
-                    onClick={handleNavigateToCamera} 
-                    className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-2 px-6 rounded-full"
-                  >
-                    Prediction Grades
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+  <div
+    className="w-full h-screen bg-center bg-cover relative"
+    style={{ backgroundImage: `url(${home1})` }}
+  >
+    <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+      <div className="text-center">
+      <h1 className="text-6xl font-bold mb-16 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50 px-4 md:px-24 eading-snug">
+  A DEEP LEARNING FRAMEWORK FOR BLACK TEA GRADE IDENTIFICATION IN
+  LOW COUNTRY OF SRI LANKA
+</h1>
+
+        <button
+          onClick={handleNavigateToCamera}
+          className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-3 px-6 rounded-full"
+        >
+          Prediction Grades
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
           {/* Slide 2 */}
           <div>
             <div className="w-full h-screen bg-center bg-cover relative" style={{ backgroundImage: `url(${home2})` }}>
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                 <div className="text-center text-white">
-                  <h1 className="text-5xl font-bold mb-4">BLACK TEA GRADES</h1>
-                  <button
+                <h1 className="text-6xl font-bold mb-16 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50 px-4 md:px-24 eading-snug">
+            A DEEP LEARNING FRAMEWORK FOR BLACK TEA GRADE IDENTIFICATION IN
+            LOW COUNTRY OF SRI LANKA
+          </h1>
+                            <button
                     onClick={handleNavigateToCamera} 
-                    className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-2 px-6 rounded-full"
+                    className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-3 px-6 rounded-full"
                   >
                     Prediction Grades
                   </button>
@@ -109,13 +121,18 @@ const Home = () => {
             <div className="w-full h-screen bg-center bg-cover relative" style={{ backgroundImage: `url(${home3})` }}>
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                 <div className="text-center text-white">
-                  <h1 className="text-5xl font-bold mb-4">BLACK TEA GRADES</h1>
-                  <button
-                    onClick={handleNavigateToCamera} 
-                    className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-2 px-6 rounded-full"
-                  >
-                    Prediction Grades
-                  </button>
+                <h1 className="text-6xl font-bold mb-16 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50 px-4 md:px-24 eading-snug">
+                                A DEEP LEARNING FRAMEWORK FOR BLACK TEA GRADE IDENTIFICATION IN
+                                LOW COUNTRY OF SRI LANKA
+                              </h1>
+                              <button
+                                onClick={handleNavigateToCamera}
+                                className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-3 px-6 rounded-full"
+                              >
+                                Prediction Grades
+                              </button>
+
+
                 </div>
               </div>
             </div>
@@ -123,18 +140,21 @@ const Home = () => {
         </Slider>
         
         {/* Custom Dots */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-4">
-          {[0, 1, 2].map((index) => (
-            <div
-              key={index}
-              onClick={() => handleDotClick(index)}
-              className={`w-4 h-4 rounded-full cursor-pointer ${index === sliderRef.current?.innerSlider.state.currentSlide ? 'bg-red-500' : 'bg-gray-300'}`}
-              style={{
-                transition: 'background-color 0.3s ease',
-              }}
-            ></div>
-          ))}
-        </div>
+<div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-4">
+        {[0, 1, 2].map((index) => (
+          <div
+            key={index}
+            onClick={() => handleDotClick(index)}
+            className={`w-4 h-4 rounded-full cursor-pointer transition-all duration-300 ${
+              index === currentSlide ? 'bg-white scale-125' : 'bg-transparent border border-white opacity-50'
+            }`}
+            style={{
+              transition: 'background-color 0.3s ease, transform 0.3s ease',
+            }}
+          ></div>
+        ))}
+      </div>
+
       </div>
 
       <About />
