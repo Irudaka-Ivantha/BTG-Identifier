@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Slider from "react-slick";
 import home1 from '../../assets/home1.jpg';
 import home2 from '../../assets/home2.jpg';
 import home3 from '../../assets/home3.jpg';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import { useLocation } from 'react-router-dom';
 import About from '../../components/about/about';
 import Grades from '../../components/grades/grades';
 import Footer from '../../components/footer/footer';
@@ -14,6 +14,7 @@ import '../../App.css';
 
 const Home = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const sliderRef = useRef(null);
   const [activeSection, setActiveSection] = useState('home'); 
   const homeRef = useRef(null); 
@@ -58,8 +59,13 @@ const Home = () => {
     sliderRef.current.slickGoTo(index);
   };
 
+  
+  const handleNavigateToCamera = () => {
+    navigate('/camera');
+  };
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-black">
       <NavBar activeSection={activeSection} /> 
       <div id="main-banner" className="relative overflow-hidden" ref={homeRef}>
         
@@ -69,9 +75,12 @@ const Home = () => {
             <div className="w-full h-screen bg-center bg-cover relative" style={{ backgroundImage: `url(${home1})` }}>
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                 <div className="text-center text-white">
-                  <h1 className="text-5xl font-bold mb-4">Welcome to Black Tea World</h1>
-                  <button className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-2 px-6 rounded-full">
-                    Learn More
+                  <h1 className="text-5xl font-bold mb-4">BLACK TEA GRADES</h1>
+                  <button
+                    onClick={handleNavigateToCamera} 
+                    className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-2 px-6 rounded-full"
+                  >
+                    Prediction Grades
                   </button>
                 </div>
               </div>
@@ -83,9 +92,12 @@ const Home = () => {
             <div className="w-full h-screen bg-center bg-cover relative" style={{ backgroundImage: `url(${home2})` }}>
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                 <div className="text-center text-white">
-                  <h1 className="text-5xl font-bold mb-4">Explore Our Tea Varieties</h1>
-                  <button className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-2 px-6 rounded-full">
-                    Explore Now
+                  <h1 className="text-5xl font-bold mb-4">BLACK TEA GRADES</h1>
+                  <button
+                    onClick={handleNavigateToCamera} 
+                    className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-2 px-6 rounded-full"
+                  >
+                    Prediction Grades
                   </button>
                 </div>
               </div>
@@ -97,9 +109,12 @@ const Home = () => {
             <div className="w-full h-screen bg-center bg-cover relative" style={{ backgroundImage: `url(${home3})` }}>
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                 <div className="text-center text-white">
-                  <h1 className="text-5xl font-bold mb-4">Experience the Flavor</h1>
-                  <button className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-2 px-6 rounded-full">
-                    Start Tasting
+                  <h1 className="text-5xl font-bold mb-4">BLACK TEA GRADES</h1>
+                  <button
+                    onClick={handleNavigateToCamera} 
+                    className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-2 px-6 rounded-full"
+                  >
+                    Prediction Grades
                   </button>
                 </div>
               </div>

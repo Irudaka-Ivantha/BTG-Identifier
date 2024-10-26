@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PredictionResult() {
+function Result() {
   return (
     <div className="w-full md:w-1/2">
       <h6 className="text-lg font-semibold">Prediction result</h6>
@@ -56,4 +56,4 @@ function PredictionResult() {
   );
 }
 
-export default PredictionResult;
+export default Result;
