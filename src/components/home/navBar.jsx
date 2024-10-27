@@ -1,38 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // This can be used for routing
 
-function Navbar() {
+const NavItem = ({ label, section, isActive, handleScroll }) => {
   return (
-    <nav className="bg-green-500 text-white p-4 shadow-md">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <span className="text-lg font-bold flex items-center">
-          <i className="fas fa-leaf mr-2"></i> BTG Identifier
-        </span>
-        <div className="flex space-x-4">
-          <a href="#home" className="tab">Home</a>
-          <a href="#about" className="tab">About</a>
-          <a href="#services" className="tab">Services</a>
-          <a href="#contact" className="tab">Contact</a>
-        </div>
-      </div>
-    </nav>
+    <button
+      className={`py-2 px-4 rounded ${isActive(section) ? 'bg-gray-700' : 'bg-transparent'}`}
+      onClick={() => handleScroll(section)}
+    >
+      {label}
+    </button>
   );
-}
+};
 
-export default Navbar;
+const NavBar = ({ activeSection }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-// Add this CSS to style the tabs
-<style jsx>{`
-  .tab {
-    padding: 10px 15px;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-  }
+  const handleScroll = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' }); // Smooth scrolling to the section
+      setMenuOpen(false); // Close the menu if it's open
+    }
+  };
 
-  .tab:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
+  const isActive = (section) => activeSection === section;
 
-  .tab:focus {
-    outline: none;
-  }
-`}</style>
+  return (
+    <header className="fixed top-0 left-0 w-full bg-[background: #12121233] py-4 custom-shadow z-50">
+      <nav className="container mx-auto flex justify-between items-center px-4">
+        <div className="text-lg font-semibold">
+          <Link to="/">
+            <img
+              src="mylogo.png"
+              alt="Logo"
+              style={{ width: '97.47px', height: '45.78px' }}
+            />
+          </Link>
+        </div>
+
+        <div className="hidden lg:flex space-x-4 sm:space-x-6 lg:space-x-8">
+          <NavItem label="Home" section="home" isActive={isActive} handleScroll={handleScroll} />
+          <NavItem label="About" section="about" isActive={isActive} handleScroll={handleScroll} />
+          <NavItem label="Grades" section="grades" isActive={isActive} handleScroll={handleScroll} />
+        </div>
+      </nav>
+    </header>
+  );
+};
+
+export default NavBar;
