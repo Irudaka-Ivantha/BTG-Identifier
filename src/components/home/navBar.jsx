@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Logo1 from '../../assets/camera2.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const NavItem = ({ label, section, isActive, handleScroll }) => (
   <button
-    className={`relative py-2 px-4 rounded ${isActive(section) ? 'bg-green-500 text-green font-bold text-xl' : 'text-green'} text-lg transition duration-300`} // Updated to include green background for active state
+    className={`relative py-2 px-4 rounded text-lg transition duration-300 ${
+      isActive(section) ? 'bg-green-500 text-white font-bold text-xl' : 'text-green-500'
+    }`}
     onClick={() => handleScroll(section)}
   >
     <span style={{ marginBottom: '4px', display: 'block' }}>{label}</span>
@@ -12,11 +16,10 @@ const NavItem = ({ label, section, isActive, handleScroll }) => (
       <span
         className="absolute left-0 right-0 bottom-0 h-1"
         style={{
-          backgroundColor: '#2E8B57', // Sea green color
           marginTop: '2px',
           zIndex: 10,
-          height: '2px', // Height of the underline
-          width: '100%', // Make sure it spans the full width
+          height: '2px',
+          width: '100%',
         }} 
       />
     )}
@@ -25,6 +28,7 @@ const NavItem = ({ label, section, isActive, handleScroll }) => (
 
 const NavBar = ({ activeSection }) => {
   const [navbarBg, setNavbarBg] = useState('transparent');
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -35,11 +39,11 @@ const NavBar = ({ activeSection }) => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
+      setIsOpen(false); // Close menu after selection
     }
   };
 
   const isActive = (section) => {
-    console.log(`Checking active section: ${section}, Active: ${activeSection}`);
     return activeSection === section;
   };
 
@@ -59,12 +63,29 @@ const NavBar = ({ activeSection }) => {
           </h1>
         </div>
 
-        <div className="hidden lg:flex space-x-4 sm:space-x-6 lg:space-x-8">
+        {/* Hamburger Menu Icon */}
+        <div className="lg:hidden flex items-center">
+          <button onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu">
+            <FontAwesomeIcon icon={isOpen ? faTimes : faBars} size="lg" className="text-green-500" />
+          </button>
+        </div>
+
+        {/* Desktop Menu */}
+        <div className={`hidden lg:flex space-x-4 sm:space-x-6 lg:space-x-8`}>
           <NavItem label="Home" section="main-banner" isActive={isActive} handleScroll={handleScroll} />
           <NavItem label="About" section="about" isActive={isActive} handleScroll={handleScroll} />
           <NavItem label="Grades" section="grades" isActive={isActive} handleScroll={handleScroll} />
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="lg:hidden bg-black text-white p-4 flex flex-col space-y-2 transition-all duration-300 ease-in-out">
+          <NavItem label="Home" section="main-banner" isActive={isActive} handleScroll={handleScroll} />
+          <NavItem label="About" section="about" isActive={isActive} handleScroll={handleScroll} />
+          <NavItem label="Grades" section="grades" isActive={isActive} handleScroll={handleScroll} />
+        </div>
+      )}
     </header>
   );
 };

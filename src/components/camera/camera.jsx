@@ -33,7 +33,6 @@ function Camera() {
       setIsCameraOn(false); // Camera is off
     }
   };
-  
 
   const captureImage = () => {
     const canvas = document.createElement('canvas');
@@ -83,25 +82,24 @@ function Camera() {
         onClick={goBack}
         className="absolute top-6 left-6 text-white text-2xl cursor-pointer hover:text-gray-400"
       />
-   <img
+      <img
         src={camera1}
         alt="Camera Icon"
         className="absolute bottom-8 left-0 rounded-lg"
         style={{ width: '450px', height: '400px' }} // Adjust width and height as needed
       />
 
-      
       {/* Instruction Text */}
-      <p className="text-4xl font-serif mb-8 text-center mt-16 mx-8 text-green-500">
+      <p className="text-2xl md:text-4xl font-serif mb-8 text-center mt-16 mx-8 text-green-500">
         This web application leverages a deep learning framework to accurately identify and classify black tea grades from Sri Lanka's low country regions, including OPA (Orange Pekoe A), BOP (Broken Orange Pekoe), OP1 (Orange Pekoe One), and P (Pekoe).
       </p>
-      <b className="text-xl mb-4 text-center font-serif max-w-full mt-4 px-4">Please capture or upload the grade image.</b>
+      <b className="text-lg md:text-xl mb-4 text-center font-serif max-w-full mt-4 px-4">Please capture or upload the grade image.</b>
 
-      <div className="flex w-full max-w-4xl mt-8">
+      <div className="flex flex-col md:flex-row w-full max-w-4xl mt-8">
         {/* Left Side - Camera and Upload Icons */}
-        <div className="flex-1 flex flex-col items-center">
+        <div className="flex-1 flex flex-col items-center mb-8 md:mb-0">
           {/* Button Container */}
-          <div className="flex space-x-4 mb-4"> {/* Flex container for horizontal alignment */}
+          <div className="flex space-x-4 mb-4 w-full justify-center"> {/* Flex container for horizontal alignment */}
             <button
               className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-all flex items-center font-serif"
               onClick={isCameraOn ? stopCamera : startCamera} // Toggle between start and stop
@@ -109,7 +107,7 @@ function Camera() {
               <FontAwesomeIcon icon={isCameraOn ? faStop : faCamera} className="mr-2" />
               {isCameraOn ? 'Stop Camera' : 'Start Camera'} {/* Change button text based on camera state */}
             </button>
-            
+
             <label htmlFor="file-upload" className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-all flex items-center cursor-pointer font-serif">
               <FontAwesomeIcon icon={faUpload} className="mr-2" /> Choose File
             </label>
@@ -121,7 +119,7 @@ function Camera() {
               className="hidden" // Hide the actual input
             />
           </div>
-          
+
           <video
             ref={videoRef}
             width="320"
@@ -134,32 +132,29 @@ function Camera() {
 
         {/* Right Side - Captured Image and Buttons */}
         {imageData && (
-          <div className="flex-1 ml-8">
-            <h5 className="text-xl font-bold mb-2 mb-4 mt-3 ml-20 font-serif text-green-500">Captured Image</h5>
+          <div className="flex-1 md:ml-8 flex flex-col items-center">
+            <h5 className="text-xl font-bold mb-2 mt-3 font-serif text-green-500">Captured Image</h5>
             <img
               src={imageData}
               alt="Captured"
               width="320"
               height="240"
-              className="border border-gray-300 rounded-lg"
+              className="border border-gray-300 rounded-lg mb-4"
               style={{ height: '240px', width: '320px' }} // Fixed size for image
             />
-            <div className="flex justify-between mt-4">
-            <div className="flex justify-center space-x-24 mt-2 ml-2">
-  <button
-    className="bg-red-500 text-white py-2 px-7 rounded hover:bg-red-600 transition-all font-serif"
-    onClick={handleCancel}
-  >
-    Cancel
-  </button>
-  <button
-    className="bg-blue-500 text-white py-2 px-7 rounded hover:bg-blue-600 transition-all font-serif"
-    onClick={handleUpload}
-  >
-    Upload
-  </button>
-</div>
-
+            <div className="flex justify-between w-full max-w-xs mt-4">
+              <button
+                className="bg-red-500 text-white py-2 px-7 rounded hover:bg-red-600 transition-all font-serif"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-blue-500 text-white py-2 px-7 rounded hover:bg-blue-600 transition-all font-serif"
+                onClick={handleUpload}
+              >
+                Upload
+              </button>
             </div>
           </div>
         )}

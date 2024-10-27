@@ -7,7 +7,7 @@ const Footer = () => {
         
         {/* Align h2 text to the left with updated color and size */}
         <h2 className="text-white text-[20px] font-bold mb-2 sm:mb-0">
-          @Black Tea Grades
+          
         </h2>
        
 

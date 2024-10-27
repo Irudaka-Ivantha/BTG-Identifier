@@ -23,95 +23,55 @@ function Result() {
       />
 
       {/* Prediction result at the top center */}
-      <h6 className="text-5xl font-semibold mt-6 text-center font-serif text-amber-700">Prediction Result</h6>
+      <h6 className="text-3xl md:text-5xl font-semibold mt-6 text-center font-serif text-amber-700">Prediction Result</h6>
 
       {/* Main content with left and right sections */}
-      <div className="flex w-full mt-8 ml-4">
+      <div className="flex flex-col md:flex-row w-full mt-8">
         {/* Left section */}
-        <div className="flex flex-col w-1/2 space-y-4">
-          <div>
-            <span className="font-serif text-amber-600 text-xl">OPA (Orange Pekoe A)</span>
-            <div className="mt-1 flex items-center w-full bg-yellow-200 rounded">
-              <div
-                className="h-4 bg-green-600 rounded"
-                role="progressbar"
-                style={{ width: '100%' }} // Update dynamically as needed
-                id="progress_opa"
-              />
-              <span className="text-green-600 ml-2">0%</span> {/* Label outside the bar, aligned at the end */}
+        <div className="flex flex-col w-full md:w-1/2 space-y-4 p-4">
+          {['OPA (Orange Pekoe A)', 'BOP (Broken Orange Pekoe)', 'OP1 (Orange Pekoe One)', 'P (Pekoe)'].map((label, index) => (
+            <div key={index}>
+              <span className="font-serif text-amber-600 text-xl">{label}</span>
+              <div className="mt-1 flex items-center w-full bg-yellow-200 rounded">
+                <div
+                  className="h-4 bg-green-600 rounded"
+                  role="progressbar"
+                  style={{ width: '0%' }} // Update dynamically as needed
+                  id={`progress_${label.split(' ')[0].toLowerCase()}`} // Dynamic ID
+                />
+                <span className="text-green-600 ml-2">0%</span>
+              </div>
             </div>
-          </div>
+          ))}
 
-          <div>
-            <span className="font-serif text-amber-600 text-xl">BOP (Broken Orange Pekoe)</span>
-            <div className="mt-1 flex items-center w-full bg-yellow-200 rounded">
-              <div
-                className="h-4 bg-green-600 rounded"
-                role="progressbar"
-                style={{ width: '100%' }} // Update dynamically as needed
-                id="progress_bop"
-              />
-              <span className="text-green-600 ml-2">0%</span> {/* Label outside the bar, aligned at the end */}
-            </div>
-          </div>
-
-          <div>
-            <span className="font-serif text-amber-600 text-xl">OP1 (Orange Pekoe One)</span>
-            <div className="mt-1 flex items-center w-full bg-yellow-200 rounded">
-              <div
-                className="h-4 bg-green-600 rounded"
-                role="progressbar"
-                style={{ width: '100%' }} // Update dynamically as needed
-                id="progress_op1"
-              />
-              <span className="text-green-600 ml-2">0%</span> {/* Label outside the bar, aligned at the end */}
-            </div>
-          </div>
-
-          <div>
-            <span className="font-serif text-amber-600 text-xl">P (Pekoe)</span>
-            <div className="mt-1 flex items-center w-full bg-yellow-200 rounded mb-4">
-              <div
-                className="h-4 bg-green-600 rounded"
-                role="progressbar"
-                style={{ width: '100%' }} // Update dynamically as needed
-                id="progress_peokoe"
-              />
-              <span className="text-green-600 ml-2">0%</span> {/* Label outside the bar, aligned at the end */}
-            </div>
-          </div>
-
-          <div className="mt-4 font-serif">
+          <div className="mt-4 font-serif text-center">
             <span id="probability">Waiting for your input to predict the result...</span>
             <h4 className="mt-2 font-bold text-xl font-serif" id="prediction_res">Grade :  _ _ _ _</h4>
           </div>
 
           {/* Captured Image Section */}
-          {imageData && ( // Render captured image if available
-            <div className="mt-4 flex flex-col items-start">
+          {imageData && (
+            <div className="mt-4 flex flex-col items-center">
               <img 
                 src={imageData} 
                 alt="Captured" 
                 className="mt-0 rounded-lg" 
-                style={{ width: '320px', height: '240px' }} 
+                style={{ width: '100%', maxWidth: '320px', height: 'auto' }} 
               />
             </div>
           )}
         </div>
 
         {/* Right section */}
-        <div className="w-1/2 flex flex-col justify-between mb-24">
-          <div className="flex justify-end">
+        <div className="w-full md:w-1/2 flex flex-col justify-between items-center mb-24">
+          <div className="flex justify-center mb-4">
             <img
               src={camera2}
               alt="Camera Icon"
               className="rounded-lg"
-              style={{ width: '600px', height: '500px' }}
+              style={{ width: '100%', maxWidth: '600px', height: 'auto' }}
             />
-            
           </div>
-
-          
         </div>
       </div>
     </div>
