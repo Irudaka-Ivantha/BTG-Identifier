@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'; // For WhatsApp
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons'; // For phone
-import Logo from '../../assets/tea.jpg';
+import Logo from '../../assets/camera1.png';
 
 import Navbar from './navBar';
 
@@ -85,7 +85,7 @@ const Home = () => {
     {loading ? (
         <div className="flex items-center justify-center h-screen bg-black">
           <div className="flex flex-col items-center">
-            <img src={Logo} alt="Logo" className="w-32 h-32 animate-bounce mb-4" /> {/* Bouncing logo */}
+            <img src={Logo} alt="Logo" className="w-54 h-32 animate-bounce mb-4" /> {/* Bouncing logo */}
             <p className="text-white text-lg animate-pulse">Loading...</p> {/* Pulsing loading text */}
           </div>
         </div>

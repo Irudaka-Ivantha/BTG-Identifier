@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // This can be used for routing
+import Logo from '../../assets/camera1.png';
 
 const NavItem = ({ label, section, isActive, handleScroll }) => {
   return (
@@ -31,7 +32,7 @@ const NavBar = ({ activeSection }) => {
         <div className="text-lg font-semibold">
           <Link to="/">
             <img
-              src="mylogo.png"
+              src={Logo}
               alt="Logo"
               style={{ width: '97.47px', height: '45.78px' }}
             />
