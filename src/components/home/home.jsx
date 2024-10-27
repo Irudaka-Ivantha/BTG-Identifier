@@ -83,7 +83,7 @@ const Home = () => {
     {loading ? (
         <div className="flex items-center justify-center h-screen bg-black">
           <div className="flex flex-col items-center">
-            <img src={Logo} alt="Logo" className="w-100 h-60 animate-bounce mb-4 md:w-80 md:h-46" /> {/* Bouncing logo */}
+            <img src={Logo} alt="Logo" className="w-100 h-50 animate-bounce mb-4 md:w-80 md:h-46" /> {/* Bouncing logo */}
             <p className="text-white text-lg animate-pulse font-serif">Loading....</p> {/* Pulsing loading text */}
           </div>
         </div>
