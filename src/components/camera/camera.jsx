@@ -57,7 +57,7 @@ function Camera() {
   };
 
   const handleUpload = () => {
-    navigate('/result'); // Navigate to the result page
+    navigate('/result', { state: { imageData } }); // Navigate to the result page
   };
 
   const goBack = () => {
