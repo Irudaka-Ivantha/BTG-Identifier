@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'; // For WhatsApp
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons'; // For phone
+import Logo from '../../assets/tea.jpg';
 
 import Navbar from './navBar';
 
@@ -25,10 +26,18 @@ const Home = () => {
   const sliderRef = useRef(null);
   const [activeSection, setActiveSection] = useState('home'); 
   const homeRef = useRef(null); 
+  const [loading, setLoading] = useState(true); // Loading state
+
 
   const sections = [
     { id: 'main-banner', ref: homeRef }
   ];
+
+  useEffect(() => {
+    // Set a timeout to simulate page load
+    setTimeout(() => setLoading(false), 2000); // Adjust timing as needed
+}, [location.pathname]);
+
 
   useEffect(() => {
     if (location.pathname === '/') setActiveSection('home');
@@ -72,6 +81,15 @@ const Home = () => {
   };
 
   return (
+    <>
+    {loading ? (
+        <div className="flex items-center justify-center h-screen bg-black">
+          <div className="flex flex-col items-center">
+            <img src={Logo} alt="Logo" className="w-32 h-32 animate-bounce mb-4" /> {/* Bouncing logo */}
+            <p className="text-white text-lg animate-pulse">Loading...</p> {/* Pulsing loading text */}
+          </div>
+        </div>
+      ) : (
     <div className="flex flex-col min-h-screen bg-black">
       <NavBar activeSection={activeSection} /> 
       <div id="main-banner" className="relative overflow-hidden" ref={homeRef}>
@@ -94,7 +112,7 @@ const Home = () => {
           onClick={handleNavigateToCamera}
           className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-3 px-6 rounded-full"
         >
-          Prediction Grades
+          Predict Grades
         </button>
       </div>
     </div>
@@ -115,7 +133,7 @@ const Home = () => {
                     onClick={handleNavigateToCamera} 
                     className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-3 px-6 rounded-full"
                   >
-                    Prediction Grades
+                    Predict Grades
                   </button>
                 </div>
               </div>
@@ -135,7 +153,7 @@ const Home = () => {
                                 onClick={handleNavigateToCamera}
                                 className="bg-[white] bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-3 px-6 rounded-full"
                               >
-                                Prediction Grades
+                                Predict Grades
                               </button>
 
 
@@ -166,13 +184,13 @@ const Home = () => {
       <About />
       <Grades />
       {/* Footer */}
-    <footer className="bg-[#1F1F1F] text-[#86C240] py-4"> {/* Reduced vertical padding */}
+    <footer className="bg-[#1F1F1F] text-[white] py-4"> {/* Reduced vertical padding */}
       <div className="container mx-auto flex justify-center gap-8"> {/* Adjusted gap */}
         {/* Left Section */}
         <div className="w-1/3 lg:ml-[30%]">
-          <h2 className="text-lg font-bold mb-2">KnowledgePulse</h2> {/* Reduced font size */}
+          <h2 className="text-lg font-bold mb-2">Black Tea Grades</h2> {/* Reduced font size */}
           <p className="text-xs"> {/* Reduced text size */}
-            Join now to receive personalized recommendations from the full Coursera catalog.
+            Some text
           </p>
           <div className="flex space-x-4 mt-2"> {/* Reduced margin */}
             {/* Social Media Icons */}
@@ -194,11 +212,9 @@ const Home = () => {
         {/* Middle Section */}
         <div className="w-1/3">
           <ul className="space-y-1 text-xs"> {/* Reduced text size */}
-            <li><a href="#home" className="hover:text-gray-300">Home</a></li>
-            <li><a href="/Results" className="hover:text-gray-300">Results</a></li>
-            <li><a href="#about" className="hover:text-gray-300">About Us</a></li>
-            <li><a href="#TimeTable" className="hover:text-gray-300">Time Table</a></li>
-            <li><a href="#ContactUs" className="hover:text-gray-300">Contact Us</a></li>
+            <li><a href="#home" className="hover:text-[#86C240]">Home</a></li>
+            <li><a href="/Results" className="hover:text-[#86C240]">About</a></li>
+            <li><a href="#about" className="hover:text-[#86C240]">Grades</a></li>
           </ul>
         </div>
       </div>
@@ -210,6 +226,8 @@ const Home = () => {
     </footer>
 
     </div>
+      )}
+      </>
   );
 };
 
