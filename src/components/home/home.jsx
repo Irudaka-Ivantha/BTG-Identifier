@@ -85,8 +85,8 @@ const Home = () => {
     {loading ? (
         <div className="flex items-center justify-center h-screen bg-black">
           <div className="flex flex-col items-center">
-            <img src={Logo} alt="Logo" className="w-54 h-32 animate-bounce mb-4" /> {/* Bouncing logo */}
-            <p className="text-white text-lg animate-pulse">Loading...</p> {/* Pulsing loading text */}
+            <img src={Logo} alt="Logo" className="w-80 h-46 animate-bounce mb-4" /> {/* Bouncing logo */}
+            <p className="text-white text-lg animate-pulse font-serif">Loading....</p> {/* Pulsing loading text */}
           </div>
         </div>
       ) : (
@@ -180,9 +180,13 @@ const Home = () => {
       </div>
 
       </div>
-
+      <div id="about">
       <About />
+      </div>
+      <div id="grades">
       <Grades />
+      </div>
+      
       {/* Footer */}
     <footer className="bg-[#1F1F1F] text-[white] py-4"> {/* Reduced vertical padding */}
       <div className="container mx-auto flex justify-center gap-8"> {/* Adjusted gap */}
@@ -226,6 +230,7 @@ const Home = () => {
     </footer>
 
     </div>
+    
       )}
       </>
   );
