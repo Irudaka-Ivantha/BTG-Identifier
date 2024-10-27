@@ -4,7 +4,7 @@ import NavBar from '../../components/home/navBar';
 
 const Grades = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-white text-white">
+    <div className="flex flex-col min-h-screen bg-black text-white">
          <NavBar />
         </div>
      

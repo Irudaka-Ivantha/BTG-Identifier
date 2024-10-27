@@ -11,7 +11,10 @@ import Grades from '../../components/grades/grades';
 import Footer from '../../components/footer/footer';
 import NavBar from '../../components/home/navBar';
 import '../../App.css';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faTwitter, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'; // For WhatsApp
+import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons'; // For phone
 
 import Navbar from './navBar';
 
@@ -83,9 +86,9 @@ const Home = () => {
     <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
       <div className="text-center">
       <h1 className="text-6xl font-bold mb-16 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50 px-4 md:px-24 eading-snug">
-  A DEEP LEARNING FRAMEWORK FOR BLACK TEA GRADE IDENTIFICATION IN
-  LOW COUNTRY OF SRI LANKA
-</h1>
+        A DEEP LEARNING FRAMEWORK FOR BLACK TEA GRADE IDENTIFICATION IN
+        LOW COUNTRY OF SRI LANKA
+      </h1>
 
         <button
           onClick={handleNavigateToCamera}
@@ -130,7 +133,7 @@ const Home = () => {
                               </h1>
                               <button
                                 onClick={handleNavigateToCamera}
-                                className="bg-white bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-3 px-6 rounded-full"
+                                className="bg-[white] bg-opacity-80 hover:bg-opacity-100 text-black font-bold py-3 px-6 rounded-full"
                               >
                                 Prediction Grades
                               </button>
@@ -149,7 +152,7 @@ const Home = () => {
             key={index}
             onClick={() => handleDotClick(index)}
             className={`w-4 h-4 rounded-full cursor-pointer transition-all duration-300 ${
-              index === currentSlide ? 'bg-white scale-125' : 'bg-transparent border border-white opacity-50'
+              index === currentSlide ? 'bg-[#86C240] scale-125' : 'bg-transparent border border-white opacity-50'
             }`}
             style={{
               transition: 'background-color 0.3s ease, transform 0.3s ease',
@@ -162,7 +165,50 @@ const Home = () => {
 
       <About />
       <Grades />
-      <Footer />
+      {/* Footer */}
+    <footer className="bg-[#1F1F1F] text-[#86C240] py-4"> {/* Reduced vertical padding */}
+      <div className="container mx-auto flex justify-center gap-8"> {/* Adjusted gap */}
+        {/* Left Section */}
+        <div className="w-1/3 lg:ml-[30%]">
+          <h2 className="text-lg font-bold mb-2">KnowledgePulse</h2> {/* Reduced font size */}
+          <p className="text-xs"> {/* Reduced text size */}
+            Join now to receive personalized recommendations from the full Coursera catalog.
+          </p>
+          <div className="flex space-x-4 mt-2"> {/* Reduced margin */}
+            {/* Social Media Icons */}
+            <a href="#" className="hover:text-blue-500 transition duration-300">
+              <FontAwesomeIcon icon={faFacebook} size="1x" /> {/* Reduced icon size */}
+            </a>
+            <a href="#" className="hover:text-blue-400 transition duration-300">
+              <FontAwesomeIcon icon={faTwitter} size="1x" /> {/* Reduced icon size */}
+            </a>
+            <a href="#" className="hover:text-blue-600 transition duration-300">
+              <FontAwesomeIcon icon={faLinkedin} size="1x" /> {/* Reduced icon size */}
+            </a>
+            <a href="#" className="hover:text-pink-500 transition duration-300">
+              <FontAwesomeIcon icon={faInstagram} size="1x" /> {/* Reduced icon size */}
+            </a>
+          </div>
+        </div>
+
+        {/* Middle Section */}
+        <div className="w-1/3">
+          <ul className="space-y-1 text-xs"> {/* Reduced text size */}
+            <li><a href="#home" className="hover:text-gray-300">Home</a></li>
+            <li><a href="/Results" className="hover:text-gray-300">Results</a></li>
+            <li><a href="#about" className="hover:text-gray-300">About Us</a></li>
+            <li><a href="#TimeTable" className="hover:text-gray-300">Time Table</a></li>
+            <li><a href="#ContactUs" className="hover:text-gray-300">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Bottom Section */}
+      <div className="mt-4 border-t border-gray-700 pt-4 text-center text-xs"> {/* Reduced margin and text size */}
+        <p className="font-bold">@Black Tea Grades</p>
+      </div>
+    </footer>
+
     </div>
   );
 };
